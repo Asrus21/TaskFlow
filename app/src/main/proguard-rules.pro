@@ -1,0 +1,2 @@
+-keep class com.taskflow.app.** { *; }
+-keep class com.google.gson.** { *; }

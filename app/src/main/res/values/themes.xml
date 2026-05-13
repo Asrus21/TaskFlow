@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.TaskFlow" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#7C6AF7</item>
+        <item name="colorPrimaryVariant">#5A4AD5</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="android:windowBackground">#0F0F14</item>
+        <item name="android:statusBarColor">#0F0F14</item>
+        <item name="android:navigationBarColor">#16161E</item>
+    </style>
+</resources>
