@@ -25,11 +25,21 @@ jobs:
         with:
           gradle-version: '8.2'
 
+      - name: Show project structure
+        run: find . -name "build.gradle" | head -20
+
       - name: Build Debug APK
-        run: gradle assembleDebug
+        run: |
+          BUILD_DIR=$(find . -name "build.gradle" -path "*/app/build.gradle" | head -1 | xargs dirname | xargs dirname)
+          echo "Building in: $BUILD_DIR"
+          cd "$BUILD_DIR"
+          gradle assembleDebug
+
+      - name: Find APK
+        run: find . -name "*.apk" 2>/dev/null
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: TaskFlow-debug
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: "**/*.apk"
