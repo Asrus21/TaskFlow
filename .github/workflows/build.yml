@@ -21,24 +21,15 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Find and set project directory
-        run: |
-          if [ -f "TaskFlow-Android/build.gradle" ]; then
-            echo "PROJECT_DIR=TaskFlow-Android" >> $GITHUB_ENV
-          else
-            echo "PROJECT_DIR=." >> $GITHUB_ENV
-          fi
-
       - name: Grant gradlew permission
-        run: chmod +x ${{ env.PROJECT_DIR }}/gradlew || true
+        run: chmod +x gradlew
 
       - name: Build Debug APK
-        working-directory: ${{ env.PROJECT_DIR }}
-        run: gradle assembleDebug --no-daemon --stacktrace
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: TaskFlow-debug
-          path: "**/app/build/outputs/apk/debug/app-debug.apk"
+          path: app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
